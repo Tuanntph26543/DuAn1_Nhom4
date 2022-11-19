@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.poly.it17323.domalmodel;
+package com.poly.it17323.domainmodel;
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -33,23 +33,28 @@ import lombok.ToString;
 @AllArgsConstructor
 public class HoaDon {
 
-//    @Id  //khoachinh
-//    @Column(name = "MAHD")
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Integer MAHD;
-//    
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "MANV", referencedColumnName = "MANV")
-//    private UserTT USERTT;
-//
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "MANV", referencedColumnName = "MANV")
-//    private KhachHang KHACHHANG;
-//    
-//    @Column(name = "TINHTRANG")
-//    private Integer TINHTRANG;
-//    
-//    @Column(name = "NGAYTAO")
-//    private Date NGAYTAO;
+    @Id  //khoachinh
+    @Column(name = "MAHD")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer maHD;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MANV", referencedColumnName = "MANV")
+    private UserTT userTT;
+    
+    @Column(name = "TENKH")
+    private String tenKH;
+    
+    @Column(name = "DIACHIKH")
+    private String diaChi;
+    
+    @Column(name = "SDTKH")
+    private String sdt;
+    
+    @Column(name = "TINHTRANG")
+    private Integer tinhTrang;
+    
+    @Column(name = "NGAYTAO")
+    private Date ngayTao;
 
 }

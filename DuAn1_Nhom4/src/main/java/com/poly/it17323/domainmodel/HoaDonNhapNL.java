@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.poly.it17323.domalmodel;
+package com.poly.it17323.domainmodel;
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -25,32 +25,23 @@ import lombok.ToString;
  * @author nguye
  */
 @Entity
-@Table(name = "CHITIETNHAPNL")
+@Table(name = "HOADONNHAPNL")
 @Setter
 @Getter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class ChiTietNhapNL {
-//    @Id  //khoachinh
-//    @Column(name = "MANL")
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Integer MANL;
-//    
-//    @Id  //khoachinh
-//    @Column(name = "MAHDNNL")
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Integer MAHDNNL;
-//    
-//    @Id  //khoachinh
-//    @Column(name = "MANCC")
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Integer MANCC;
-//
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "MANV", referencedColumnName = "MANV")
-//    private UserTT USERTT;
-//    
-//    @Column(name = "SOLUONG")
-//    private Integer SOLUONG;
+public class HoaDonNhapNL {
+
+    @Id  //khoachinh
+    @Column(name = "MAHDNNL")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer maHDNNL;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MANV", referencedColumnName = "MANV")
+    private UserTT userTT;
+    
+    @Column(name = "NGAYNHAP")
+    private Date ngayNhap;
 }
