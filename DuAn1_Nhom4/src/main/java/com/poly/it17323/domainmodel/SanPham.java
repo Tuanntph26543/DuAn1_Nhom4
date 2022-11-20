@@ -41,7 +41,7 @@ public class SanPham {
     private KhuyenMai khuyenMai;
     
     @Column(name = "TENSP")
-    private Integer tenSP;
+    private String tenSP;
     
     @Column(name = "GIABAN")
     private Double giaBan;
