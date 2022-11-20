@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.poly.it17323.domalmodel;
+package com.poly.it17323.domainmodel;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,28 +24,42 @@ import lombok.ToString;
  * @author nguye
  */
 @Entity
-@Table(name = "SANPHAM")
+@Table(name = "HOADONCHITIET")
 @Setter
 @Getter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class SanPham {
+public class HoaDonChiTiet {
+
     @Id  //khoachinh
-    @Column(name = "MASP")
+    @Column(name = "MAHOADONCT")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer MASP;
+    private Integer maHDCT;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MAHD", referencedColumnName = "MAHD")
+    private HoaDon hoaDon;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MAKM", referencedColumnName = "MAKM")
-    private KhuyenMai KHUYENMAI;
+    @JoinColumn(name = "MASP", referencedColumnName = "MASP")
+    private SanPham sanPham;
     
-    @Column(name = "TENSP")
-    private Integer TENSP;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MABAN", referencedColumnName = "MABAN")
+    private Ban ban;
     
-    @Column(name = "GIABAN")
-    private Double GIABAN;
-    
-    @Column(name = "TRANGTHAI")
-    private Integer TRANGTHAI;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MACOMBOCT", referencedColumnName = "MACOMBOCT")
+    private ComBoChiTiet comBoChiTiet;
+
+    @Column(name = "SOLUONG")
+    private Integer soLuong;
+
+    @Column(name = "DONGIA")
+    private Double donGia;
+
+    @Column(name = "MOTA")
+    private String moTa;
+
 }

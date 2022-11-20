@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package com.poly.it17323.domalmodel;
+package com.poly.it17323.domainmodel;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,30 +14,32 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-/**
- *
- * @author nguye
- */
 @Entity
-@Table(name = "ncc")
+@Table(name = "KHUYENMAI")
 @Setter
 @Getter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class NhaCungCap {
+public class KhuyenMai {
 
     @Id  //khoachinh
-    @Column(name = "MANCC")
+    @Column(name = "MAKM")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer MANCC;
+    private Integer maKM;
 
-    @Column(name = "TENNCC")
-    private String TENNCC;
+    @Column(name = "TENKM")
+    private String tenKM;
 
-    @Column(name = "DIACHI")
-    private String DIACHI;
-
-    @Column(name = "SDT")
-    private String SDT;
+    @Column(name = "SOTIENKM")
+    private Double soTienKM;
+    
+    @Column(name = "NGAYBD")
+    private Double ngayBD;
+    
+    @Column(name = "NGAYKT")
+    private Date ngayKT;
+    
+    @Column(name = "TRANGTHAI")
+    private Integer trangThai;
 }

@@ -2,9 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.poly.it17323.domalmodel;
+package com.poly.it17323.domainmodel;
 
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,28 +21,18 @@ import lombok.ToString;
  * @author nguye
  */
 @Entity
-@Table(name = "CALAMVIEC")
+@Table(name="chucvu")
 @Setter
 @Getter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class CaLamViec {
-
+public class ChucVu {
     @Id  //khoachinh
-    @Column(name = "MACLV")
+    @Column(name="MACV")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer MACLV;
-
-    @Column(name = "TENCLV")
-    private String TENCLV;
-
-    @Column(name = "GIOBD")
-    private Date GIOBD;
+    private Integer maCV;
     
-    @Column(name = "GIOKT")
-    private Date GIOKT;
-    
-    @Column(name = "SOTIEN")
-    private Double SOTIEN;
+    @Column(name = "TECV")
+    private String tenCV;
 }
