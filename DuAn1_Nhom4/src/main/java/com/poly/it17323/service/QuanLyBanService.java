@@ -4,14 +4,14 @@
  */
 package com.poly.it17323.service;
 
-import com.poly.it17323.response.NhaCungCapResponse;
+import com.poly.it17323.reponse.BanReponse;
 import java.util.List;
 
 /**
  *
  * @author My PC
  */
-public interface QuanLyNCCService {
+public interface QuanLyBanService {
 
-    List<NhaCungCapResponse> getAllNCC();
+    List<BanReponse> getAllBan();
 }

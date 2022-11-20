@@ -4,8 +4,8 @@
  */
 package com.poly.it17323.repository;
 
+
 import com.poly.it17323.domainmodel.Ban;
-import com.poly.it17323.domainmodel.NhaCungCap;
 import com.poly.it17323.hibernateconfig.HibernateUtil;
 import java.util.List;
 import javax.persistence.Query;
@@ -16,23 +16,31 @@ import org.hibernate.Transaction;
  *
  * @author My PC
  */
-public class NhaCungCapRepository {
+public class BanRepository {
 
     private Session session = HibernateUtil.getFACTORY().openSession();
 
-    private String fromTable = "FROM NCC"; // HQL
+    private String fromTable = "FROM Ban"; // HQL
 
-    public List<NhaCungCap> getAll() {
+    public List<Ban> getAll() {
         Query query = session.createQuery(fromTable, Ban.class);
-        List<NhaCungCap> lists = query.getResultList();
+        List<Ban> lists = query.getResultList();
         return lists;
     }
 
-    public Boolean add(NhaCungCap nhaCungCap) {
+//    public Ban getOne(Long id) {
+//        String sql = fromTable + "WHERE id =:id";
+//        Query query = session.createQuery(sql, Ban.class);
+//        query.setParameter("id", id);
+//        Ban ban = (Ban) query.getSingleResult();
+//        return ban;
+//    }
+
+    public Boolean add(Ban ban) {
         Transaction transaction = null;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            session.save(nhaCungCap);
+            session.save(ban);
             transaction.commit();
             return true;
         } catch (Exception e) {
@@ -41,11 +49,11 @@ public class NhaCungCapRepository {
         return null;
     }
     
-    public Boolean update(NhaCungCap nhaCungCap) {
+    public Boolean update(Ban ban) {
         Transaction transaction = null;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            session.saveOrUpdate(nhaCungCap);
+            session.saveOrUpdate(ban);
             transaction.commit();
             return true;
         } catch (Exception e) {
@@ -54,11 +62,11 @@ public class NhaCungCapRepository {
         return null;
     }
     
-    public Boolean delete(NhaCungCap nhaCungCap) {
+    public Boolean delete(Ban ban) {
         Transaction transaction = null;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            session.delete(nhaCungCap);
+            session.delete(ban);
             transaction.commit();
             return true;
         } catch (Exception e) {
@@ -68,8 +76,8 @@ public class NhaCungCapRepository {
     }
 
     public static void main(String[] args) {
-        List<NhaCungCap> lists = new NhaCungCapRepository().getAll();
-        for (NhaCungCap x : lists) {
+        List<Ban> lists = new BanRepository().getAll();
+        for (Ban x : lists) {
             System.out.println(x.toString());
         }
     }

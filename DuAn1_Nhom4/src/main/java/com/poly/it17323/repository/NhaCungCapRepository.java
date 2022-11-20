@@ -4,8 +4,8 @@
  */
 package com.poly.it17323.repository;
 
-
-import com.poly.it17323.domainmodel.NguyenLieu;
+import com.poly.it17323.domainmodel.Ban;
+import com.poly.it17323.domainmodel.NhaCungCap;
 import com.poly.it17323.hibernateconfig.HibernateUtil;
 import java.util.List;
 import javax.persistence.Query;
@@ -16,24 +16,23 @@ import org.hibernate.Transaction;
  *
  * @author My PC
  */
-public class NguyenLieuRepository {
+public class NhaCungCapRepository {
 
     private Session session = HibernateUtil.getFACTORY().openSession();
 
-    private String fromTable = "FROM NGUYENLIEU"; // HQL
+    private String fromTable = "FROM NhaCungCap"; // HQL
 
-    public List<NguyenLieu> getAll() {
-        Query query = session.createQuery(fromTable, NguyenLieu.class);
-        List<NguyenLieu> lists = query.getResultList();
+    public List<NhaCungCap> getAll() {
+        Query query = session.createQuery(fromTable, Ban.class);
+        List<NhaCungCap> lists = query.getResultList();
         return lists;
     }
 
-
-    public Boolean add(NguyenLieu nguyenLieu) {
+    public Boolean add(NhaCungCap nhaCungCap) {
         Transaction transaction = null;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            session.save(nguyenLieu);
+            session.save(nhaCungCap);
             transaction.commit();
             return true;
         } catch (Exception e) {
@@ -42,11 +41,11 @@ public class NguyenLieuRepository {
         return null;
     }
     
-    public Boolean update(NguyenLieu nguyenLieu) {
+    public Boolean update(NhaCungCap nhaCungCap) {
         Transaction transaction = null;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            session.saveOrUpdate(nguyenLieu);
+            session.saveOrUpdate(nhaCungCap);
             transaction.commit();
             return true;
         } catch (Exception e) {
@@ -55,11 +54,11 @@ public class NguyenLieuRepository {
         return null;
     }
     
-    public Boolean delete(NguyenLieu nguyenLieu) {
+    public Boolean delete(NhaCungCap nhaCungCap) {
         Transaction transaction = null;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            session.delete(nguyenLieu);
+            session.delete(nhaCungCap);
             transaction.commit();
             return true;
         } catch (Exception e) {
@@ -69,10 +68,9 @@ public class NguyenLieuRepository {
     }
 
     public static void main(String[] args) {
-        List<NguyenLieu> lists = new NguyenLieuRepository().getAll();
-        for (NguyenLieu x : lists) {
+        List<NhaCungCap> lists = new NhaCungCapRepository().getAll();
+        for (NhaCungCap x : lists) {
             System.out.println(x.toString());
         }
     }
-    
 }

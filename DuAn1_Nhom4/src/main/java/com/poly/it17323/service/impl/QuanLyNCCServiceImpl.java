@@ -5,7 +5,7 @@
 package com.poly.it17323.service.impl;
 
 import com.poly.it17323.domainmodel.NhaCungCap;
-import com.poly.it17323.response.NhaCungCapResponse;
+import com.poly.it17323.reponse.NhaCungCapReponse;
 import com.poly.it17323.repository.NhaCungCapRepository;
 import com.poly.it17323.service.QuanLyNCCService;
 import java.util.ArrayList;
@@ -20,18 +20,18 @@ public class QuanLyNCCServiceImpl implements QuanLyNCCService {
     private NhaCungCapRepository nhaCungCapRepository = new NhaCungCapRepository();
 
     @Override
-    public List<NhaCungCapResponse> getAllNCC() {
+    public List<NhaCungCapReponse> getAllNCC() {
         List<NhaCungCap> lists = nhaCungCapRepository.getAll();
-        List<NhaCungCapResponse> responses = new ArrayList<>();
+        List<NhaCungCapReponse> responses = new ArrayList<>();
         for (NhaCungCap ncc : lists) {
-            NhaCungCapResponse nhaCungCapResponse = new NhaCungCapResponse(ncc);
+            NhaCungCapReponse nhaCungCapResponse = new NhaCungCapReponse(ncc);
             responses.add(nhaCungCapResponse);
         }
         return responses;
     }
     public static void main(String[] args) {
-        List<NhaCungCapResponse> lists = new QuanLyNCCServiceImpl().getAllNCC();
-        for (NhaCungCapResponse x : lists) {
+        List<NhaCungCapReponse> lists = new QuanLyNCCServiceImpl().getAllNCC();
+        for (NhaCungCapReponse x : lists) {
             System.out.println(x.toString());
         }
     }

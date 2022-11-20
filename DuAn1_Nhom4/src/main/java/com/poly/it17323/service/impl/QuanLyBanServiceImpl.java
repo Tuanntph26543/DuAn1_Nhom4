@@ -5,7 +5,7 @@
 package com.poly.it17323.service.impl;
 
 import com.poly.it17323.domainmodel.Ban;
-import com.poly.it17323.response.BanResponse;
+import com.poly.it17323.reponse.BanReponse;
 import com.poly.it17323.repository.BanRepository;
 import com.poly.it17323.service.QuanLyBanService;
 import java.util.ArrayList;
@@ -20,18 +20,18 @@ public class QuanLyBanServiceImpl implements QuanLyBanService {
     private BanRepository banRepository = new BanRepository();
 
     @Override
-    public List<BanResponse> getAllBan() {
+    public List<BanReponse> getAllBan() {
         List<Ban> lists = banRepository.getAll();
-        List<BanResponse> responses = new ArrayList<>();
+        List<BanReponse> responses = new ArrayList<>();
         for (Ban ban : lists) {
-            BanResponse banResponse = new BanResponse(ban);
+            BanReponse banResponse = new BanReponse(ban);
             responses.add(banResponse);
         }
         return responses;
     }
     public static void main(String[] args) {
-        List<BanResponse> lists = new QuanLyBanServiceImpl().getAllBan();
-        for (BanResponse x : lists) {
+        List<BanReponse> lists = new QuanLyBanServiceImpl().getAllBan();
+        for (BanReponse x : lists) {
             System.out.println(x.toString());
         }
     }

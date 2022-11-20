@@ -4,14 +4,14 @@
  */
 package com.poly.it17323.service;
 
-import com.poly.it17323.response.NguyenLieuResponse;
+import com.poly.it17323.reponse.NhaCungCapReponse;
 import java.util.List;
 
 /**
  *
  * @author My PC
  */
-public interface QuanLyNguyenLieuService {
+public interface QuanLyNCCService {
 
-    List<NguyenLieuResponse> getAllNguyenLieu();
+    List<NhaCungCapReponse> getAllNCC();
 }

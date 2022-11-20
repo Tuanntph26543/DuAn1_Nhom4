@@ -4,14 +4,14 @@
  */
 package com.poly.it17323.service;
 
-import com.poly.it17323.response.BanResponse;
+import com.poly.it17323.reponse.NguyenLieuReponse;
 import java.util.List;
 
 /**
  *
  * @author My PC
  */
-public interface QuanLyBanService {
+public interface QuanLyNguyenLieuService {
 
-    List<BanResponse> getAllBan();
+    List<NguyenLieuReponse> getAllNguyenLieu();
 }
