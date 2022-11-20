@@ -51,7 +51,7 @@ public class ChiTietNhapNL {
     private NhaCungCap nhaCungCap;
 
     @Column(name = "SOLUONG")
-    private Integer soLuong;
+    private Integer SOLUONG;
     
     @Column(name = "THANHTIEN")
     private Double thanhTien;
