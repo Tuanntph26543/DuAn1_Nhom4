@@ -2,13 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.poly.it17323.domalmodel;
+package com.poly.it17323.domainmodel;
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,25 +25,28 @@ import lombok.ToString;
  * @author nguye
  */
 @Entity
-@Table(name = "ban")
+@Table(name = "COMBOCHITIET")
 @Setter
 @Getter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Ban {
+public class ComBoChiTiet {
 
     @Id  //khoachinh
-    @Column(name = "MABAN")
+    @Column(name = "MACOMBOCT")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer MABAN;
+    private Integer maComboCT;
 
-    @Column(name = "TENBAN")
-    private String TENBAN;
-    
-    @Column(name = "SONGUOINGOIMAX")
-    private Integer SONGUOINGOIMAX;
-    
-    @Column(name = "TRANGTHAI")
-    private Integer TRANGTHAI;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MACOMBO", referencedColumnName = "MACOMBO")
+    private ComBo comBo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MASP", referencedColumnName = "MASP")
+    private SanPham sanPham;
+
+    @Column(name = "SOLUONG")
+    private Integer soLuong;
+
 }

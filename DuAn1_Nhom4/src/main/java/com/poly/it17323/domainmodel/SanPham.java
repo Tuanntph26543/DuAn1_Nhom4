@@ -2,9 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.poly.it17323.domalmodel;
+package com.poly.it17323.domainmodel;
 
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,40 +24,28 @@ import lombok.ToString;
  * @author nguye
  */
 @Entity
-@Table(name = "USERTT")
+@Table(name = "SANPHAM")
 @Setter
 @Getter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserTT {
+public class SanPham {
     @Id  //khoachinh
-    @Column(name = "MANV")
+    @Column(name = "MASP")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer MANV;
-
+    private Integer maSP;
+    
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="MACV", referencedColumnName = "MACV")
-    private ChucVu CHUCVU;
+    @JoinColumn(name = "MAKM", referencedColumnName = "MAKM")
+    private KhuyenMai khuyenMai;
     
-    @Column(name = "HOTEN")
-    private String HOTEN;
+    @Column(name = "TENSP")
+    private Integer tenSP;
     
-    @Column(name = "GIOITINH")
-    private String GIOITINH;
-    
-    @Column(name = "NGAYSINH")
-    private Date NGAYSINH;
-    
-    @Column(name = "SDT")
-    private String SDT;
-    
-    @Column(name = "TAIKHOAN")
-    private String TAIKHOAN;
-    
-    @Column(name = "MATKHAU")
-    private String MATKHAU;
+    @Column(name = "GIABAN")
+    private Double giaBan;
     
     @Column(name = "TRANGTHAI")
-    private Integer TRANGTHAI;
+    private Integer trangThai;
 }
