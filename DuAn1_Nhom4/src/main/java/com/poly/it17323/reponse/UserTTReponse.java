@@ -36,8 +36,9 @@ public class UserTTReponse {
     }
 
     public UserTTReponse(UserTT user) {
+        this.maNV = user.getMaNV();
         this.chucVu = user.getChucVu();
-        this.tenCV = user.getChucVu().getTenCV();
+        this.tenCV = user.getChucVu() == null ? null : user.getChucVu().getTenCV();
         this.hoTen = user.getHoTen();
         this.gioiTinh = user.getGioiTinh();
         this.namSinh = user.getNamSinh();

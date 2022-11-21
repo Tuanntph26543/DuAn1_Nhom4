@@ -58,6 +58,7 @@ public class UserTTServiceImpl implements UserTTService {
     public boolean updateUser(UserTTReponse userReponse) {
         try {
             UserTT user = new UserTT();
+            user.setMaNV(userReponse.getMaNV());
             user.setCccd(userReponse.getCccd());
             user.setChucVu(userReponse.getChucVu());
             user.setDiaChi(userReponse.getDiaChi());
@@ -68,8 +69,12 @@ public class UserTTServiceImpl implements UserTTService {
             user.setSdt(userReponse.getSdt());
             user.setTaiKhoan(userReponse.getTaiKhoan());
             user.setTrangThai(1);
-            userTTRepository.update(user);
-            return true;
+            boolean kq = userTTRepository.update(user);
+            if(kq==true){
+                return true;
+            }else{
+                return false;
+            }
         } catch (Exception e) {
             return false;
         }
@@ -77,21 +82,26 @@ public class UserTTServiceImpl implements UserTTService {
 
     @Override
     public boolean insertUser(UserTTReponse userReponse) {
+        try {
         UserTT user = new UserTT();
-            user.setMaNV(null);
-            user.setCccd(userReponse.getCccd());
-            user.getChucVu().setMaCV(userReponse.getChucVu().getMaCV());
-            user.setDiaChi(userReponse.getDiaChi());
-            user.setGioiTinh(userReponse.getGioiTinh());
-            user.setHoTen(userReponse.getHoTen());
-            user.setMatKhau(userReponse.getMatKhau());
-            user.setNamSinh(userReponse.getNamSinh());
-            user.setSdt(userReponse.getSdt());
-            user.setTaiKhoan(userReponse.getTaiKhoan());
-            user.setTrangThai(1);
-            userTTRepository.add(user);
+        user.setCccd(userReponse.getCccd());
+        user.setChucVu(userReponse.getChucVu());
+        user.setDiaChi(userReponse.getDiaChi());
+        user.setGioiTinh(userReponse.getGioiTinh());
+        user.setHoTen(userReponse.getHoTen());
+        user.setMatKhau(userReponse.getMatKhau());
+        user.setNamSinh(userReponse.getNamSinh());
+        user.setSdt(userReponse.getSdt());
+        user.setTaiKhoan(userReponse.getTaiKhoan());
+        user.setTrangThai(1);
+        boolean kq = userTTRepository.add(user);
+        if(kq==true){
             return true;
+        }else{
+            return false;
+        }
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
-
-

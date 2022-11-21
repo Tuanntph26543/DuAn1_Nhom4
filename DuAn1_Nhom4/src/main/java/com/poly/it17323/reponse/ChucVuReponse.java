@@ -15,7 +15,6 @@ import lombok.ToString;
  */
 @Getter
 @Setter
-@ToString
 public class ChucVuReponse {
     private Integer maCV;
     private String tenCV;
@@ -27,5 +26,11 @@ public class ChucVuReponse {
         this.maCV = chucVu.getMaCV();
         this.tenCV = chucVu.getTenCV();
     }
+
+    @Override
+    public String toString() {
+        return tenCV;
+    }
+    
     
 }

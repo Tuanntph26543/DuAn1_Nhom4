@@ -44,18 +44,19 @@ public class UserTTRepository {
             transaction.commit();
             return true;
         } catch (Exception e) {
-            e.printStackTrace(System.out);
+//            e.printStackTrace(System.out);
+                return null;
         }
-        return null;
     }
     public Boolean update(UserTT userTT){
         Transaction transaction = null;
         try ( Session session = HirbernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            session.saveOrUpdate(userTT);
+            session.update(userTT);
             transaction.commit();
             return true;
         } catch (Exception e) {
+            e.printStackTrace(System.out);
         }
         return null;
     }

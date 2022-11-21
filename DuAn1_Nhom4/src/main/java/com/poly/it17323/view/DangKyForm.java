@@ -43,13 +43,20 @@ public class DangKyForm extends javax.swing.JFrame {
         buttonGroup.add(rd_nu);
         buttonGroup.add(rd_nam);
     }
-    private void comboChucVu(){
-        defaultComboBoxModel = (DefaultComboBoxModel) cb_chucVu.getModel();
-        List<ChucVuReponse> list = chucVuService.getAllChucVus();
-        for (ChucVuReponse chucVuReponse : list) {
-            defaultComboBoxModel.addElement(chucVuReponse.getTenCV());
+
+    private void comboChucVu() {
+        try {
+
+            defaultComboBoxModel = (DefaultComboBoxModel) cb_chucVu.getModel();
+            List<ChucVuReponse> list = chucVuService.getAllChucVus();
+            for (ChucVuReponse chucVuReponse : list) {
+                defaultComboBoxModel.addElement(chucVuReponse);
+            }
+            cb_chucVu.setSelectedIndex(1);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Vui lòng tạo chức vụ trước khi đăng ký");
+            // cho form tạo chức vụ vào
         }
-        cb_chucVu.setSelectedIndex(1);
     }
 
     /**
@@ -283,52 +290,72 @@ public class DangKyForm extends javax.swing.JFrame {
 
     private void cb_chucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_chucVuActionPerformed
         // TODO add your handling code here:
-        
-        
+
+
     }//GEN-LAST:event_cb_chucVuActionPerformed
 
     private void btnDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyActionPerformed
         // TODO add your handling code here:
-        List<UserTTReponse> userTTReponses = userTTService.getAllUserTTs();
-        UserTTReponse user = new UserTTReponse();
-        user.setTaiKhoan(txtTaiKhoan.getText().trim());
-        user.setMatKhau(String.valueOf(txtMatKhau.getPassword()).trim()) ;
-        String hoTen = txtHoTen.getText().trim();
-        user.setHoTen(hoTen);
-        if(rd_nam.isSelected()){
-            user.setGioiTinh("Nam");
-        }else if(rd_nu.isSelected()){
-            user.setGioiTinh("Nữ");
-        }
-        Integer namSinh = Integer.getInteger(txtNamSinh.getText().trim());
-        String diaChi = txtDiaChi.getText().trim();
-        String sdt = txtSDT.getText().trim();
-        String cccd = txtCCCD.getText().trim();
-        String tenChucVu = String.valueOf(cb_chucVu.getSelectedIndex());
-        for (UserTTReponse x : userTTReponses) {
-            if(x.getChucVu().getTenCV().equalsIgnoreCase(tenChucVu)){
-                user.setChucVu(x.getChucVu());
-                System.out.println(x.getChucVu().toString());
+        Integer namSinh = Integer.parseInt(txtNamSinh.getText().trim());
+        if (txtCCCD.getText().trim().length() == 0 || txtDiaChi.getText().trim().length() == 0
+                || txtHoTen.getText().trim().length() == 0
+                || String.valueOf(txtMatKhau.getPassword()).trim().length() == 0
+                || txtNamSinh.getText().trim().length() == 0
+                || txtSDT.getText().trim().length() == 0
+                || txtTaiKhoan.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(this, "Không được để trống");
+        } else if (txtCCCD.getText().trim().length() != 12) {
+            JOptionPane.showMessageDialog(this, "Căn cước phải là 12 số");
+        } else if (txtSDT.getText().trim().length() != 10) {
+            JOptionPane.showMessageDialog(this, "SĐT phải là 10 số");
+        } else if (namSinh < 1910 || namSinh > 2022) {
+            JOptionPane.showMessageDialog(this, "Năm sinh không hợp lệ");
+        } else {
+            List<UserTTReponse> userTTReponses = userTTService.getAllUserTTs();
+            UserTTReponse user = new UserTTReponse();
+            user.setTaiKhoan(txtTaiKhoan.getText().trim());
+            user.setMatKhau(String.valueOf(txtMatKhau.getPassword()).trim());
+            String hoTen = txtHoTen.getText().trim();
+            user.setHoTen(hoTen);
+            if (rd_nam.isSelected()) {
+                user.setGioiTinh("Nam");
+            } else if (rd_nu.isSelected()) {
+                user.setGioiTinh("Nữ");
+            }
+//            Integer namSinh = Integer.parseInt(txtNamSinh.getText().trim());
+            String diaChi = txtDiaChi.getText().trim();
+            String sdt = txtSDT.getText().trim();
+            String cccd = txtCCCD.getText().trim();
+
+            try {
+                // lấy ra chức vụ
+                ChucVuReponse cv = (ChucVuReponse) cb_chucVu.getSelectedItem();
+                ChucVu chucVu = new ChucVu();
+                chucVu.setMaCV(cv.getMaCV());
+                chucVu.setTenCV(cv.getTenCV());
+                user.setChucVu(chucVu);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Vui lòng tạo chức vụ");
+            }
+
+            user.setTrangThai(1);
+            user.setNamSinh(namSinh);
+            user.setDiaChi(diaChi);
+            user.setSdt(sdt);
+            user.setCccd(cccd);
+            boolean kq = userTTService.insertUser(user);
+            if (kq == true) {
+                JOptionPane.showMessageDialog(this, "Đăng ký thành công");
+                DangNhapForm dn = new DangNhapForm();
+                dn.setLocationRelativeTo(null);
+                dn.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Tài khoản đã tồn tại");
             }
         }
-        user.setTrangThai(1);
-        user.setNamSinh(namSinh);
-        user.setDiaChi(diaChi);
-        user.setSdt(sdt);
-        user.setCccd(cccd);
-        
-        boolean kq = userTTService.insertUser(user);
-        if(kq==true){
-            JOptionPane.showMessageDialog(this, "Đăng ký thành công");
-            DangNhapForm dn = new DangNhapForm();
-            dn.setLocationRelativeTo(null);
-            dn.setVisible(true);
-            this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(this, "Đăng ký thất bại");
-        }
-        
-        
+
+
     }//GEN-LAST:event_btnDangKyActionPerformed
 
     /**

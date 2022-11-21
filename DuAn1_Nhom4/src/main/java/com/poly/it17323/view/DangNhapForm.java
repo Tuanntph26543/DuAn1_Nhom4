@@ -158,9 +158,9 @@ public class DangNhapForm extends javax.swing.JFrame {
     private void btnQuenMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuenMatKhauActionPerformed
         // TODO add your handling code here:
         QuenMatKhauForm ql = new QuenMatKhauForm();
-            ql.setLocationRelativeTo(null);
-            ql.setVisible(true);
-            this.dispose();
+        ql.setLocationRelativeTo(null);
+        ql.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnQuenMatKhauActionPerformed
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
@@ -170,20 +170,23 @@ public class DangNhapForm extends javax.swing.JFrame {
         if (tk.length() == 0 || mk.length() == 0) {
             JOptionPane.showMessageDialog(this, "Không được để trống");
         } else {
+            int kq = 0;
             List<UserTTReponse> lst = userTTService.getAllUserTTs();
             for (UserTTReponse x : lst) {
                 if (x.getTaiKhoan().equalsIgnoreCase(tk)) {
+                    kq = 2;
                     if (x.getMatKhau().equalsIgnoreCase(mk)) {
                         JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
-                        break;
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Sai MK");
+                        kq = 1;
                         break;
                     }
-                } else {
-                    JOptionPane.showMessageDialog(this, "Không tồn tại TK");
-                    break;
                 }
+            }
+            System.out.println(kq);
+            if (kq == 0) {
+                JOptionPane.showMessageDialog(this, "Tài khoản không tồn tại");
+            } else if (kq == 2) {
+                JOptionPane.showMessageDialog(this, "Sai mật khẩu");
             }
         }
 
@@ -192,11 +195,11 @@ public class DangNhapForm extends javax.swing.JFrame {
 
     private void btnDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyActionPerformed
         // TODO add your handling code here:
-            DangKyForm ql = new DangKyForm();
-            ql.setLocationRelativeTo(null);
-            ql.setVisible(true);
-            this.dispose();
-        
+        DangKyForm ql = new DangKyForm();
+        ql.setLocationRelativeTo(null);
+        ql.setVisible(true);
+        this.dispose();
+
     }//GEN-LAST:event_btnDangKyActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed

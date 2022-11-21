@@ -184,28 +184,31 @@ public class QuenMatKhauForm extends javax.swing.JFrame {
         if (tk.length() == 0 || matKhauMoi.length() == 0 || xacNhan.length() == 0 || canCuoc.length() == 0) {
             JOptionPane.showMessageDialog(this, "Không được để trống");
         } else {
+            int kq = 0;
             List<UserTTReponse> lst = userTTService.getAllUserTTs();
             for (UserTTReponse x : lst) {
+                System.out.println(x.toString());
                 if (x.getTaiKhoan().equalsIgnoreCase(tk)) {
+                    kq = 1;
                     if (x.getCccd().equalsIgnoreCase(canCuoc)) {
-                        if(matKhauMoi.equalsIgnoreCase(xacNhan)){
+                        kq = 2;
+                        if (matKhauMoi.equalsIgnoreCase(xacNhan)) {
                             x.setMatKhau(matKhauMoi);
-                            boolean kq = userTTService.updateUser(x);
+                            userTTService.updateUser(x);
                             JOptionPane.showMessageDialog(this, "Cập nhật mật khẩu thành công !!!");
+                            kq = 3;
                             break;
-                        }else{
                             
-                            JOptionPane.showMessageDialog(this, "Mật khẩu không trùng khớp");
-                            break;
                         }
-                    } else {
-                        JOptionPane.showMessageDialog(this, "CCCD không đúng");
-                        break;
                     }
-                } else {
-                    JOptionPane.showMessageDialog(this, "Không tồn tại TK");
-                    break;
                 }
+            }
+            if(kq==0){
+                JOptionPane.showMessageDialog(this, "Tài khoản không tồn tại !!!");
+            }else if(kq==1){
+                JOptionPane.showMessageDialog(this, "CCCD không đúng !!!");
+            }else if(kq==2){
+                JOptionPane.showMessageDialog(this, "Mật khẩu không trùng khớp !!!");
             }
         }
     }//GEN-LAST:event_btnCapNhatMKActionPerformed
