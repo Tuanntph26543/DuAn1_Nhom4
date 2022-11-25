@@ -5,11 +5,17 @@
 package com.poly.it17323.reponse;
 
 import com.poly.it17323.domainmodel.NhaCungCap;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
  * @author My PC
  */
+@Getter
+@Setter
+@ToString
 public class NhaCungCapReponse {
     private Integer maNCC;
     private String tenNCC;

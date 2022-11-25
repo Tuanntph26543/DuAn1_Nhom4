@@ -18,12 +18,10 @@ import org.hibernate.Transaction;
  */
 public class NhaCungCapRepository {
 
-    private Session session = HibernateUtil.getFACTORY().openSession();
-
-    private String fromTable = "FROM NhaCungCap"; // HQL
-
     public List<NhaCungCap> getAll() {
-        Query query = session.createQuery(fromTable, Ban.class);
+        Session session = HibernateUtil.getFACTORY().openSession();
+        String fromTable = "FROM NhaCungCap"; 
+        Query query = session.createQuery(fromTable, NhaCungCap.class);
         List<NhaCungCap> lists = query.getResultList();
         return lists;
     }
@@ -40,12 +38,12 @@ public class NhaCungCapRepository {
         }
         return null;
     }
-    
+
     public Boolean update(NhaCungCap nhaCungCap) {
         Transaction transaction = null;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            session.saveOrUpdate(nhaCungCap);
+            session.update(nhaCungCap);
             transaction.commit();
             return true;
         } catch (Exception e) {
@@ -53,7 +51,7 @@ public class NhaCungCapRepository {
         }
         return null;
     }
-    
+
     public Boolean delete(NhaCungCap nhaCungCap) {
         Transaction transaction = null;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
