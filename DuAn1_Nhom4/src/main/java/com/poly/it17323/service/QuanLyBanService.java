@@ -14,4 +14,10 @@ import java.util.List;
 public interface QuanLyBanService {
 
     List<BanReponse> getAllBan();
+    
+    boolean add(BanReponse banReponse);
+    
+    boolean update(BanReponse banReponse);
+    
+    boolean delete(BanReponse banReponse);
 }

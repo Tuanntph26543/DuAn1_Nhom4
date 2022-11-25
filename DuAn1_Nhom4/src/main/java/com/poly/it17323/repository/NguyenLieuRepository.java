@@ -4,7 +4,6 @@
  */
 package com.poly.it17323.repository;
 
-
 import com.poly.it17323.domainmodel.NguyenLieu;
 import com.poly.it17323.hibernateconfig.HibernateUtil;
 import java.util.List;
@@ -18,16 +17,15 @@ import org.hibernate.Transaction;
  */
 public class NguyenLieuRepository {
 
-    private Session session = HibernateUtil.getFACTORY().openSession();
-
-    private String fromTable = "FROM NguyenLieu"; // HQL
-
     public List<NguyenLieu> getAll() {
+
+        Session session = HibernateUtil.getFACTORY().openSession();
+
+        String fromTable = "FROM NguyenLieu"; // HQL
         Query query = session.createQuery(fromTable, NguyenLieu.class);
         List<NguyenLieu> lists = query.getResultList();
         return lists;
     }
-
 
     public Boolean add(NguyenLieu nguyenLieu) {
         Transaction transaction = null;
@@ -41,12 +39,12 @@ public class NguyenLieuRepository {
         }
         return null;
     }
-    
+
     public Boolean update(NguyenLieu nguyenLieu) {
         Transaction transaction = null;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            session.saveOrUpdate(nguyenLieu);
+            session.update(nguyenLieu);
             transaction.commit();
             return true;
         } catch (Exception e) {
@@ -54,7 +52,7 @@ public class NguyenLieuRepository {
         }
         return null;
     }
-    
+
     public Boolean delete(NguyenLieu nguyenLieu) {
         Transaction transaction = null;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
@@ -74,5 +72,5 @@ public class NguyenLieuRepository {
             System.out.println(x.toString());
         }
     }
-    
+
 }

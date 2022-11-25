@@ -14,4 +14,10 @@ import java.util.List;
 public interface QuanLyNguyenLieuService {
 
     List<NguyenLieuReponse> getAllNguyenLieu();
+
+    boolean add(NguyenLieuReponse nguyenLieuReponse);
+
+    boolean update(NguyenLieuReponse nguyenLieuReponse);
+
+    boolean delete(NguyenLieuReponse nguyenLieuReponse);
 }

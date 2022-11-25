@@ -14,4 +14,10 @@ import java.util.List;
 public interface QuanLyNCCService {
 
     List<NhaCungCapReponse> getAllNCC();
+
+    boolean add(NhaCungCapReponse nhaCungCapReponse);
+
+    boolean update(NhaCungCapReponse nhaCungCapReponse);
+
+    boolean delete(NhaCungCapReponse nhaCungCapReponse);
 }

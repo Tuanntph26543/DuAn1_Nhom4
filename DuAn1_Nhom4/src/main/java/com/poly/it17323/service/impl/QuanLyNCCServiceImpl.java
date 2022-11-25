@@ -29,10 +29,67 @@ public class QuanLyNCCServiceImpl implements QuanLyNCCService {
         }
         return responses;
     }
+
     public static void main(String[] args) {
         List<NhaCungCapReponse> lists = new QuanLyNCCServiceImpl().getAllNCC();
         for (NhaCungCapReponse x : lists) {
             System.out.println(x.toString());
+        }
+    }
+
+    @Override
+    public boolean add(NhaCungCapReponse nhaCungCapReponse) {
+        try {
+            NhaCungCap ncc = new NhaCungCap();
+            ncc.setTenNCC(nhaCungCapReponse.getTenNCC());
+            ncc.setDiaChi(nhaCungCapReponse.getDiaChi());
+            ncc.setSdt(nhaCungCapReponse.getSdt());
+            boolean kq = nhaCungCapRepository.add(ncc);
+            if (kq == true) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean update(NhaCungCapReponse nhaCungCapReponse) {
+        try {
+            NhaCungCap ncc = new NhaCungCap();
+            ncc.setMaNCC(nhaCungCapReponse.getMaNCC());
+            ncc.setTenNCC(nhaCungCapReponse.getTenNCC());
+            ncc.setDiaChi(nhaCungCapReponse.getDiaChi());
+            ncc.setSdt(nhaCungCapReponse.getSdt());
+            boolean kq = nhaCungCapRepository.update(ncc);
+            if (kq == true) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean delete(NhaCungCapReponse nhaCungCapReponse) {
+        try {
+            NhaCungCap ncc = new NhaCungCap();
+            ncc.setMaNCC(nhaCungCapReponse.getMaNCC());
+            ncc.setTenNCC(nhaCungCapReponse.getTenNCC());
+            ncc.setDiaChi(nhaCungCapReponse.getDiaChi());
+            ncc.setSdt(nhaCungCapReponse.getSdt());
+            boolean kq = nhaCungCapRepository.delete(ncc);
+            if (kq == true) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
         }
     }
 }

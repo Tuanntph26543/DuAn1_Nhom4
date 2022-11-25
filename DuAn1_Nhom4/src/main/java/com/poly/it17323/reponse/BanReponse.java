@@ -33,6 +33,13 @@ public class BanReponse { // response truy vấn trực tiếp trên entity
         this.trangThai = ban.getTrangThai();
     }
 
+    public String trangThai(){
+        if(trangThai == 1){
+            return "Có người";
+        }
+        return "Còn trống";
+    }
+
 
     
     

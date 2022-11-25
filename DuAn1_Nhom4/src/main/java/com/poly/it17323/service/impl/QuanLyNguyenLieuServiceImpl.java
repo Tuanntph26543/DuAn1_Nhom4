@@ -29,10 +29,64 @@ public class QuanLyNguyenLieuServiceImpl implements QuanLyNguyenLieuService {
         }
         return responses;
     }
+
     public static void main(String[] args) {
         List<NguyenLieuReponse> lists = new QuanLyNguyenLieuServiceImpl().getAllNguyenLieu();
         for (NguyenLieuReponse x : lists) {
             System.out.println(x.toString());
+        }
+    }
+
+    @Override
+    public boolean add(NguyenLieuReponse nguyenLieuReponse) {
+        try {
+            NguyenLieu nguyenLieu = new NguyenLieu();
+            nguyenLieu.setTenNL(nguyenLieuReponse.getTenNL());
+            nguyenLieu.setMoTa(nguyenLieuReponse.getMoTa());
+            boolean kq = nguyenLieuRepository.add(nguyenLieu);
+            if (kq == true) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean update(NguyenLieuReponse nguyenLieuReponse) {
+        try {
+            NguyenLieu nguyenLieu = new NguyenLieu();
+            nguyenLieu.setMaNL(nguyenLieuReponse.getMaNL());
+            nguyenLieu.setTenNL(nguyenLieuReponse.getTenNL());
+            nguyenLieu.setMoTa(nguyenLieuReponse.getMoTa());
+            boolean kq = nguyenLieuRepository.update(nguyenLieu);
+            if (kq == true) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean delete(NguyenLieuReponse nguyenLieuReponse) {
+        try {
+            NguyenLieu nguyenLieu = new NguyenLieu();
+            nguyenLieu.setMaNL(nguyenLieuReponse.getMaNL());
+            nguyenLieu.setTenNL(nguyenLieuReponse.getTenNL());
+            nguyenLieu.setMoTa(nguyenLieuReponse.getMoTa());
+            boolean kq = nguyenLieuRepository.delete(nguyenLieu);
+            if (kq == true) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
         }
     }
 }
