@@ -4,7 +4,6 @@
  */
 package com.poly.it17323.repository;
 
-
 import com.poly.it17323.domainmodel.Ban;
 import com.poly.it17323.hibernateconfig.HibernateUtil;
 import java.util.List;
@@ -18,23 +17,13 @@ import org.hibernate.Transaction;
  */
 public class BanRepository {
 
-    private Session session = HibernateUtil.getFACTORY().openSession();
-
-    private String fromTable = "FROM Ban"; // HQL
-
     public List<Ban> getAll() {
+        Session session = HibernateUtil.getFACTORY().openSession();
+        String fromTable = "FROM Ban"; // HQL
         Query query = session.createQuery(fromTable, Ban.class);
         List<Ban> lists = query.getResultList();
         return lists;
     }
-
-//    public Ban getOne(Long id) {
-//        String sql = fromTable + "WHERE id =:id";
-//        Query query = session.createQuery(sql, Ban.class);
-//        query.setParameter("id", id);
-//        Ban ban = (Ban) query.getSingleResult();
-//        return ban;
-//    }
 
     public Boolean add(Ban ban) {
         Transaction transaction = null;
@@ -48,20 +37,21 @@ public class BanRepository {
         }
         return null;
     }
-    
+
     public Boolean update(Ban ban) {
         Transaction transaction = null;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            session.saveOrUpdate(ban);
+            session.update(ban);
             transaction.commit();
+            getAll();
             return true;
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
         return null;
     }
-    
+
     public Boolean delete(Ban ban) {
         Transaction transaction = null;
         try ( Session session = HibernateUtil.getFACTORY().openSession()) {

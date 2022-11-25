@@ -35,4 +35,60 @@ public class QuanLyBanServiceImpl implements QuanLyBanService {
             System.out.println(x.toString());
         }
     }
+
+    @Override
+    public boolean add(BanReponse banReponse) {
+        try {
+            Ban ban = new Ban();
+            ban.setTenBan(banReponse.getTenBan());
+            ban.setSoNguoiNgoiMax(banReponse.getSoNguoiMax());
+            ban.setTrangThai(banReponse.getTrangThai());
+            boolean kq = banRepository.add(ban);
+            if(kq == true){
+                return true;
+            }else{
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean update(BanReponse banReponse) {
+        try {
+            Ban ban = new Ban();
+            ban.setMaBan(banReponse.getMaBan());
+            ban.setTenBan(banReponse.getTenBan());
+            ban.setSoNguoiNgoiMax(banReponse.getSoNguoiMax());
+            ban.setTrangThai(banReponse.getTrangThai());
+            boolean kq = banRepository.update(ban);
+            if(kq == true){
+                return true;
+            }else{
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean delete(BanReponse banReponse) {
+        try {
+            Ban ban = new Ban();
+            ban.setMaBan(banReponse.getMaBan());
+            ban.setTenBan(banReponse.getTenBan());
+            ban.setSoNguoiNgoiMax(banReponse.getSoNguoiMax());
+            ban.setTrangThai(banReponse.getTrangThai());
+            boolean kq = banRepository.delete(ban);
+            if(kq == true){
+                return true;
+            }else{
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
