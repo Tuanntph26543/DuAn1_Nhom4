@@ -18,7 +18,9 @@ import poly.nhom4.service.UserTTService;
  */
 public class UserTTServiceIplm implements UserTTService {
 
-    private final USERTTRepository userTTRepository = new USERTTRepository();;
+    private final USERTTRepository userTTRepository = new USERTTRepository();
+
+    ;
 
 
     @Override

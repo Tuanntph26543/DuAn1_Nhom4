@@ -63,7 +63,7 @@ public class UserTT {
 
     @Column(name = "CCCD")
     private String CCCD;
-    
+
     @Column(name = "SDT")
     private String SDT;
 
@@ -75,7 +75,6 @@ public class UserTT {
 
     @Column(name = "TRANGTHAI")
     private Integer TRANGTHAI;
-
 
 //    public static void main(String[] args) {
 //        USERTTRepository userRP = new USERTTRepository();
@@ -97,7 +96,4 @@ public class UserTT {
 //            System.out.println(x.toString());
 //        }
 //    }
-
-    
-
 }

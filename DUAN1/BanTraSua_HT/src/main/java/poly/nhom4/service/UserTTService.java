@@ -13,10 +13,11 @@ import poly.nhom4.reponse.UserTTReponse;
  * @author ACER
  */
 public interface UserTTService {
+
     UserTT getUSerByMaNV(int maNV);
-    
+
     List<UserTTReponse> getAllUserTTs();
-    
+
     UserTTReponse dangNhap(String taiKhoanNhap, String matKhauNhap);
 
     boolean insertUser(UserTTReponse userReponse);

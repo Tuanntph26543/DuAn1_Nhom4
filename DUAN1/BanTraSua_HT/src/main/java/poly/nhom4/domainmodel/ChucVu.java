@@ -21,18 +21,19 @@ import lombok.ToString;
  * @author ACER
  */
 @Entity
-@Table(name="CHUCVU")
+@Table(name = "CHUCVU")
 @Setter
 @Getter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class ChucVu {
+
     @Id  //khoachinh
-    @Column(name="MACV")
+    @Column(name = "MACV")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer maCV;
-    
+
     @Column(name = "TECV")
     private String tenCV;
 }
