@@ -4,12 +4,24 @@
  */
 package poly.nhom4.service;
 
-import poly.nhom4.domainmodel.USERTT;
+import java.util.List;
+import poly.nhom4.domainmodel.UserTT;
+import poly.nhom4.reponse.UserTTReponse;
 
 /**
  *
  * @author ACER
  */
 public interface UserTTService {
-    USERTT getUSerByMaNV(int maNV);
+
+    UserTT getUSerByMaNV(int maNV);
+
+    List<UserTTReponse> getAllUserTTs();
+
+    UserTTReponse dangNhap(String taiKhoanNhap, String matKhauNhap);
+
+    boolean insertUser(UserTTReponse userReponse);
+
+    boolean updateUser(UserTTReponse userReponse);
+
 }

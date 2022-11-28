@@ -36,7 +36,7 @@ public class HoaDon {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MANV", referencedColumnName = "MANV")
-    private USERTT usertt;
+    private UserTT usertt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MAKH", referencedColumnName = "MAKH")
@@ -45,7 +45,7 @@ public class HoaDon {
     public HoaDon() {
     }
 
-    public HoaDon(int MAHD, Date ngayTao, int tinhTrang, USERTT usertt, KhachHang khachHang) {
+    public HoaDon(int MAHD, Date ngayTao, int tinhTrang, UserTT usertt, KhachHang khachHang) {
         this.MAHD = MAHD;
         this.ngayTao = ngayTao;
         this.tinhTrang = tinhTrang;
@@ -77,11 +77,11 @@ public class HoaDon {
         this.tinhTrang = tinhTrang;
     }
 
-    public USERTT getUsertt() {
+    public UserTT getUsertt() {
         return usertt;
     }
 
-    public void setUsertt(USERTT usertt) {
+    public void setUsertt(UserTT usertt) {
         this.usertt = usertt;
     }
 

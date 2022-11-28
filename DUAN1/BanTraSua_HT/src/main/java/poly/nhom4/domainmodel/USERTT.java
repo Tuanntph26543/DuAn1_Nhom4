@@ -5,6 +5,9 @@
 package poly.nhom4.domainmodel;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+//import poly.nhom4.reponse.ChucVuReponse;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,19 +17,37 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import poly.nhom4.reponse.UserTTReponse;
+import poly.nhom4.repository.USERTTRepository;
+import poly.nhom4.service.UserTTService;
+import poly.nhom4.service.impl.UserTTServiceIplm;
 
 /**
  *
  * @author ACER
  */
-@Table
+@Table(name = "USERTT")
 @Entity
-public class USERTT {
+@Setter
+@Getter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserTT {
 
-    @Id
+    @Id  //khoachinh
     @Column(name = "MANV")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int MANV;
+    private Integer MANV;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MACV", referencedColumnName = "MACV")
+    private ChucVu CHUCVU;
 
     @Column(name = "HOTEN")
     private String HOTEN;
@@ -35,7 +56,7 @@ public class USERTT {
     private String GIOITINH;
 
     @Column(name = "NAMSINH")
-    private String NAMSINH;
+    private Integer NAMSINH;
 
     @Column(name = "DIACHI")
     private String DIACHI;
@@ -53,115 +74,26 @@ public class USERTT {
     private String MATKHAU;
 
     @Column(name = "TRANGTHAI")
-    private int TRANGTHAI;
+    private Integer TRANGTHAI;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MACV", referencedColumnName = "MACV")
-    private ChucVu CHUCVU;
-
-    public USERTT() {
-    }
-
-    public USERTT(int MANV, String HOTEN, String GIOITINH, String NAMSINH, String DIACHI, String CCCD, String SDT, String TAIKHOAN, String MATKHAU, int TRANGTHAI, ChucVu CHUCVU) {
-        this.MANV = MANV;
-        this.HOTEN = HOTEN;
-        this.GIOITINH = GIOITINH;
-        this.NAMSINH = NAMSINH;
-        this.DIACHI = DIACHI;
-        this.CCCD = CCCD;
-        this.SDT = SDT;
-        this.TAIKHOAN = TAIKHOAN;
-        this.MATKHAU = MATKHAU;
-        this.TRANGTHAI = TRANGTHAI;
-        this.CHUCVU = CHUCVU;
-    }
-
-    public int getMANV() {
-        return MANV;
-    }
-
-    public void setMANV(int MANV) {
-        this.MANV = MANV;
-    }
-
-    public String getHOTEN() {
-        return HOTEN;
-    }
-
-    public void setHOTEN(String HOTEN) {
-        this.HOTEN = HOTEN;
-    }
-
-    public String getGIOITINH() {
-        return GIOITINH;
-    }
-
-    public void setGIOITINH(String GIOITINH) {
-        this.GIOITINH = GIOITINH;
-    }
-
-    public String getNAMSINH() {
-        return NAMSINH;
-    }
-
-    public void setNAMSINH(String NAMSINH) {
-        this.NAMSINH = NAMSINH;
-    }
-
-    public String getDIACHI() {
-        return DIACHI;
-    }
-
-    public void setDIACHI(String DIACHI) {
-        this.DIACHI = DIACHI;
-    }
-
-    public String getCCCD() {
-        return CCCD;
-    }
-
-    public void setCCCD(String CCCD) {
-        this.CCCD = CCCD;
-    }
-
-    public String getSDT() {
-        return SDT;
-    }
-
-    public void setSDT(String SDT) {
-        this.SDT = SDT;
-    }
-
-    public String getTAIKHOAN() {
-        return TAIKHOAN;
-    }
-
-    public void setTAIKHOAN(String TAIKHOAN) {
-        this.TAIKHOAN = TAIKHOAN;
-    }
-
-    public String getMATKHAU() {
-        return MATKHAU;
-    }
-
-    public void setMATKHAU(String MATKHAU) {
-        this.MATKHAU = MATKHAU;
-    }
-
-    public int getTRANGTHAI() {
-        return TRANGTHAI;
-    }
-
-    public void setTRANGTHAI(int TRANGTHAI) {
-        this.TRANGTHAI = TRANGTHAI;
-    }
-
-    public ChucVu getCHUCVU() {
-        return CHUCVU;
-    }
-
-    public void setCHUCVU(ChucVu CHUCVU) {
-        this.CHUCVU = CHUCVU;
-    }
-
+//    public static void main(String[] args) {
+//        USERTTRepository userRP = new USERTTRepository();
+////        List<UserTT> lst = userRP.getAll();
+////        for (UserTT x : lst) {
+////            x.toString();
+////            System.out.println(x.toString());
+////        }
+//        UserTTService service = new UserTTServiceIplm();
+//        List<UserTT> lists = userRP.getAll();
+//        // B2: convert list từ reposotory sang list response
+//        List<UserTTReponse> lst = new ArrayList<>();
+////        return lists.stream().map(UserTTReponse::new).collect(Collectors.toList());
+//        for (UserTT userDomain : lists) {
+//            UserTTReponse y = new UserTTReponse(userDomain);
+//            lst.add(y);
+//        }
+//        for (UserTTReponse x : lst) {
+//            System.out.println(x.toString());
+//        }
+//    }
 }

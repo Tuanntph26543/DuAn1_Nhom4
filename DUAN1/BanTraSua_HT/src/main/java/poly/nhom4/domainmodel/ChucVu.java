@@ -10,48 +10,30 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
  * @author ACER
  */
-@Table
 @Entity
+@Table(name = "CHUCVU")
+@Setter
+@Getter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class ChucVu {
-    
-    @Id
+
+    @Id  //khoachinh
     @Column(name = "MACV")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int MACV;
+    private Integer maCV;
 
     @Column(name = "TECV")
-    private String TENCV;
-
-    public ChucVu() {
-    }
-
-    public ChucVu(int MACV, String TENCV) {
-        this.MACV = MACV;
-        this.TENCV = TENCV;
-    }
-    
-    
-
-    public int getMACV() {
-        return MACV;
-    }
-
-    public void setMACV(int MACV) {
-        this.MACV = MACV;
-    }
-
-    public String getTENCV() {
-        return TENCV;
-    }
-
-    public void setTENCV(String TENCV) {
-        this.TENCV = TENCV;
-    }
-
-    
+    private String tenCV;
 }

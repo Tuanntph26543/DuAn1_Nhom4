@@ -17,7 +17,7 @@ import poly.nhom4.domainmodel.HoaDonChiTiet;
 import poly.nhom4.domainmodel.KhachHang;
 import poly.nhom4.domainmodel.KhuyenMai;
 import poly.nhom4.domainmodel.SanPham;
-import poly.nhom4.domainmodel.USERTT;
+import poly.nhom4.domainmodel.UserTT;
 
 /**
  *
@@ -28,12 +28,13 @@ public class HibernateUtil {
     private static final SessionFactory FACTORY;
 
     static {
-        Configuration conf = new Configuration();
+        Configuration conf = new Configuration() {
+        };
 
         Properties properties = new Properties();
         properties.put(Environment.DIALECT, "org.hibernate.dialect.SQLServerDialect");
         properties.put(Environment.DRIVER, "com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=qlbts_ht01");
+        properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=QLBANTS");
         properties.put(Environment.USER, "sa");
         properties.put(Environment.PASS, "123456");
         properties.put(Environment.SHOW_SQL, "true");
@@ -44,16 +45,17 @@ public class HibernateUtil {
         conf.addAnnotatedClass(HoaDon.class);
         conf.addAnnotatedClass(Ban.class);
         conf.addAnnotatedClass(HoaDonChiTiet.class);
-
-        conf.addAnnotatedClass(USERTT.class);
+        
+//        conf.addAnnotatedClass(ChucVu.class);
+        conf.addAnnotatedClass(UserTT.class);
         conf.addAnnotatedClass(KhachHang.class);
         conf.addAnnotatedClass(ChucVu.class);
-
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(conf.getProperties()).build();
         FACTORY = conf.buildSessionFactory(registry);
 
     }
+    
 
     public static SessionFactory getFACTORY() {
         return FACTORY;
