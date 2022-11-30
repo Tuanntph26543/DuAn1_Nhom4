@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.poly.it17323.repository;
+package poly.nhom4.repository;
 
-import com.poly.it17323.domainmodel.NguyenLieu;
-import com.poly.it17323.hibernateconfig.HibernateUtil;
+import poly.nhom4.domainmodel.NguyenLieu;
+import poly.nhom4.hibernateconfig.HibernateUtil;
 import java.util.List;
 import javax.persistence.Query;
 import org.hibernate.Session;

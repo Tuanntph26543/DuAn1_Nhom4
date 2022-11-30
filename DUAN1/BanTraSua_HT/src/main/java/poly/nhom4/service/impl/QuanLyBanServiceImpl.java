@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.poly.it17323.service.impl;
+package poly.nhom4.service.impl;
 
-import com.poly.it17323.domainmodel.Ban;
-import com.poly.it17323.reponse.BanReponse;
-import com.poly.it17323.repository.BanRepository;
-import com.poly.it17323.service.QuanLyBanService;
+import poly.nhom4.domainmodel.Ban;
+import poly.nhom4.reponse.BanReponse;
+import poly.nhom4.repository.BanRepository;
+import poly.nhom4.service.QuanLyBanService;
 import java.util.ArrayList;
 import java.util.List;
 
